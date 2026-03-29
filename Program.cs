@@ -1,4 +1,6 @@
-﻿namespace Healthcare_Management_System
+﻿using System.Globalization;
+
+namespace Healthcare_Management_System
 {
     internal class Program
     {
@@ -15,8 +17,10 @@
             int lastPatientIndex = -1;
 
             //Data storage
-           
+
             //Patient 1
+
+            lastPatientIndex++;
 
             patientNames[lastPatientIndex] = "Ali Hassan";
             patientIDs [lastPatientIndex] = "P001";
@@ -26,9 +30,10 @@
             departments [lastPatientIndex] = "General";
             visitCount [lastPatientIndex] = 2;
             billingAmount [lastPatientIndex] = 0;
-            lastPatientIndex++;
 
             //Patient 2
+
+            lastPatientIndex++;
 
             patientNames[lastPatientIndex] = "Sara Ahmed";
             patientIDs[lastPatientIndex] = "P002";
@@ -38,9 +43,10 @@
             departments[lastPatientIndex] = "Orthopedics";
             visitCount[lastPatientIndex] = 4;
             billingAmount[lastPatientIndex] = 0;
-            lastPatientIndex++;
 
             //Patient 3
+
+            lastPatientIndex++;
 
             patientNames[lastPatientIndex] = "Omar Khalid";
             patientIDs[lastPatientIndex] = "P003";
@@ -50,7 +56,6 @@
             departments[lastPatientIndex] = "Cardiology";
             visitCount[lastPatientIndex] = 1;
             billingAmount[lastPatientIndex] = 0;
-            lastPatientIndex++;
 
             bool exit = false;
             while (true)
@@ -71,10 +76,97 @@
                 Console.Write("Choose option: ");
                 int option = int.Parse(Console.ReadLine());
 
-                switch (option) 
+                switch (option)
                 {
-                
-                
+
+                    case 1:
+                        //Register New Patient
+
+                        lastPatientIndex++;
+
+                        Console.WriteLine("Enter patient name: ");
+                        patientNames [lastPatientIndex+1] = Console.ReadLine();
+
+                        Console.WriteLine("Enter patient ID: ");
+                        patientIDs [lastPatientIndex+1] = Console.ReadLine();
+
+                        Console.WriteLine("Enter the diagnose: ");
+                        diagnoses [lastPatientIndex + 1] = Console.ReadLine();
+
+                        Console.WriteLine("Enter the department: ");
+                        departments [lastPatientIndex + 1] = Console.ReadLine();
+
+                        admitted [lastPatientIndex+1] = true;
+                        assignedDoctors[lastPatientIndex + 1] = " ";
+                        visitCount[lastPatientIndex + 1] = 0;
+                        billingAmount[lastPatientIndex + 1] = 0;
+
+                        Console.WriteLine("patient added.");
+                        break;
+                case 2:
+                        //Admit Patient
+                        Console.WriteLine("Enter patient ID or patient name: ");
+                        string Input = Console.ReadLine();
+
+                        bool Found = false;
+                        for (int i = 0; i <= lastPatientIndex; i++) 
+                        {
+                            if (Input == patientIDs[i] || Input == patientNames[i] ) 
+                            {
+                                Found = true; // patient found
+
+                                if (admitted[i] == true) // patient already admit
+                                {
+                                    Console.WriteLine("Patient is already admitted under " + assignedDoctors[i] );
+                                    break;
+                                }
+                                 
+                                //new admit patient
+
+                                Console.WriteLine("Enter doctor name: ");
+                                string doc = Console.ReadLine();
+
+                                assignedDoctors[i] = doc;
+                                visitCount[i]++;
+                                admitted[i] = true;
+                                Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
+                                Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
+
+
+
+                            }
+
+                        }
+
+                        if (Found == false)
+                        {
+                            Console.WriteLine("patient not found");
+                        }
+
+                        break;
+
+                case 3:
+                        break;
+                        
+                case 4:
+                        break;
+                case 5:
+                        break;
+
+                case 6:
+                        break;
+
+                case 7:
+                        break;
+
+                case 8:
+                        break;
+
+                case 9:
+                        break;
+
+                case 10:
+                        break;
                 
                 
                 
