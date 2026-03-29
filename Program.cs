@@ -228,7 +228,7 @@ namespace Healthcare_Management_System
 
                                 Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] );
 
-                                if (admitted[i] == true)
+                                if (admitted[i] == true) 
                                 {
                                     Console.WriteLine("Assigned doctor: " + assignedDoctors[i]);
                                 }
@@ -242,6 +242,17 @@ namespace Healthcare_Management_System
 
                         break;
                 case 5:
+                        //List All Admitted Patients
+                        Console.WriteLine("Admitted Patients: ");
+
+                        for (int i = 0; i <= lastPatientIndex; i++)
+                        {
+                            if (admitted[i] == true)
+                            {
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i]);
+                            }
+                        }
+
                         break;
 
                 case 6:
