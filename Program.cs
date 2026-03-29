@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Transactions;
 
 namespace Healthcare_Management_System
 {
@@ -85,42 +86,42 @@ namespace Healthcare_Management_System
                         lastPatientIndex++;
 
                         Console.WriteLine("Enter patient name: ");
-                        patientNames [lastPatientIndex+1] = Console.ReadLine();
+                        patientNames[lastPatientIndex + 1] = Console.ReadLine();
 
                         Console.WriteLine("Enter patient ID: ");
-                        patientIDs [lastPatientIndex+1] = Console.ReadLine();
+                        patientIDs[lastPatientIndex + 1] = Console.ReadLine();
 
                         Console.WriteLine("Enter the diagnose: ");
-                        diagnoses [lastPatientIndex + 1] = Console.ReadLine();
+                        diagnoses[lastPatientIndex + 1] = Console.ReadLine();
 
                         Console.WriteLine("Enter the department: ");
-                        departments [lastPatientIndex + 1] = Console.ReadLine();
+                        departments[lastPatientIndex + 1] = Console.ReadLine();
 
-                        admitted [lastPatientIndex+1] = true;
+                        admitted[lastPatientIndex + 1] = true;
                         assignedDoctors[lastPatientIndex + 1] = " ";
                         visitCount[lastPatientIndex + 1] = 0;
                         billingAmount[lastPatientIndex + 1] = 0;
 
                         Console.WriteLine("patient added.");
                         break;
-                case 2:
+                    case 2:
                         //Admit Patient
                         Console.WriteLine("Enter patient ID or patient name: ");
                         string Input = Console.ReadLine();
 
                         bool Found = false;
-                        for (int i = 0; i <= lastPatientIndex; i++) 
+                        for (int i = 0; i <= lastPatientIndex; i++)
                         {
-                            if (Input == patientIDs[i] || Input == patientNames[i] ) 
+                            if (Input == patientIDs[i] || Input == patientNames[i])
                             {
                                 Found = true; // patient found
 
                                 if (admitted[i] == true) // patient already admit
                                 {
-                                    Console.WriteLine("Patient is already admitted under " + assignedDoctors[i] );
+                                    Console.WriteLine("Patient is already admitted under " + assignedDoctors[i]);
                                     break;
                                 }
-                                 
+
                                 //new admit patient
 
                                 Console.WriteLine("Enter doctor name: ");
@@ -145,7 +146,72 @@ namespace Healthcare_Management_System
 
                         break;
 
-                case 3:
+                    case 3:
+                        //Discharge Patient
+                        Console.WriteLine("Enter patient ID or patient name: ");
+                        string input = Console.ReadLine();
+
+                        bool patientFound = false;
+                        for (int i = 0; i <= lastPatientIndex; i++)
+                        {
+                            if (input == patientIDs[i] || input == patientNames[i])
+                            {
+                                patientFound = true; // patient found
+
+                                if (admitted[i] == false)
+                                {
+                                    Console.WriteLine("This patient is not currently admitted.");
+                                    break;
+                                }
+
+
+                                Console.WriteLine("Was there a consultation fee? (yes/no)");
+                                string free = Console.ReadLine();
+
+                                if (free == "yes")
+                                {
+                                    Console.WriteLine("Enter consultation fee amount: ");
+                                    double amount = double.Parse(Console.ReadLine());
+
+                                    billingAmount[i] += amount;
+                                }
+
+                                Console.WriteLine("Any medication charges? (yes/no)");
+                                string medication = Console.ReadLine();
+
+                                if (medication == "yes")
+                                {
+                                    Console.WriteLine("Enter medication charges: ");
+                                    double price = double.Parse(Console.ReadLine());
+
+                                    billingAmount[i] += price;
+
+                                }
+
+                                if (billingAmount[i] > 0)
+                                {
+
+                                    Console.WriteLine("Total charges added this visit: " + billingAmount[i] + " OMR");
+                                }
+
+
+                                else
+                                {
+                                    Console.WriteLine("No charges recorded");
+                                }
+
+                                admitted[i] = false;
+                                assignedDoctors[i] = " ";
+                                Console.WriteLine("Patient discharged successfully!");
+                            }
+                        }
+
+
+                        if (patientFound == false)
+                        {
+                            Console.WriteLine("patient not found");
+                        }
+
                         break;
                         
                 case 4:
