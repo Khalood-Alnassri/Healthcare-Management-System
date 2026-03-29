@@ -215,6 +215,31 @@ namespace Healthcare_Management_System
                         break;
                         
                 case 4:
+                        //Search Patient
+                        Console.WriteLine("Enter patient ID or patient name: ");
+                        string patientInput = Console.ReadLine();
+
+                        bool PatientFound = false;
+                        for (int i = 0; i <= lastPatientIndex; i++)
+                        {
+                            if (patientInput == patientIDs[i] || patientInput == patientNames[i])
+                            {
+                                PatientFound = true; // patient found
+
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] );
+
+                                if (admitted[i] == true)
+                                {
+                                    Console.WriteLine("Assigned doctor: " + assignedDoctors[i]);
+                                }
+                            }
+                        }
+
+                        if (PatientFound == false)
+                        {
+                            Console.WriteLine("patient not found");
+                        }
+
                         break;
                 case 5:
                         break;
