@@ -1,5 +1,8 @@
 ﻿using System.Globalization;
+using System.Numerics;
+using System.Security.Cryptography;
 using System.Transactions;
+using System.Xml.Linq;
 
 namespace Healthcare_Management_System
 {
@@ -256,9 +259,45 @@ namespace Healthcare_Management_System
                         break;
 
                 case 6:
+                        //Transfer Patient to Another Doctor
+                        Console.WriteLine("Enter current doctor name: ");
+                        string currentDoctor = Console.ReadLine();
+
+                        Console.WriteLine("Enter new doctor name: ");
+                        string newDoctor = Console.ReadLine();
+
+                        bool doctorFound = false;
+
+                        for (int i = 0; i <= lastPatientIndex; i++)
+                        {
+                            if (assignedDoctors[i] == currentDoctor) // find current Doctor 
+                            {
+                                doctorFound = true;
+
+                                if (admitted[i] == true)
+                                {
+                                    Console.WriteLine("Patient name: " + patientNames[i]);
+                                }
+                            }
+                        }
+
                         break;
 
                 case 7:
+                        //View Most Visited Patients
+                        Console.WriteLine("The most visited patients is: ");
+
+                        for (int visit = 100; visit >= 0; visit--) //عداد تنازلي من الاكثر للاقل
+                        {
+                            for(int i = 0; i <= lastPatientIndex; i++)
+                            {
+                                if (visitCount[i] == visit) //ترتيب المرضى على حسب عدد مرات الزيارة
+                                {
+                                    Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Visit count: " + visitCount[i]);
+                                }
+                            }
+                        }
+
                         break;
 
                 case 8:
@@ -273,6 +312,10 @@ namespace Healthcare_Management_System
                 
                 
                 }
+
+                Console.WriteLine("Press any key to continue....");
+                Console.ReadKey();
+                Console.Clear();
 
             }
 
