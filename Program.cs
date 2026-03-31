@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Net.NetworkInformation;
 using System.Numerics;
 using System.Security.Cryptography;
 using System.Transactions;
@@ -267,7 +268,7 @@ namespace Healthcare_Management_System
                         string newDoctor = Console.ReadLine();
 
                         bool doctorFound = false;
-
+                        
                         for (int i = 0; i <= lastPatientIndex; i++)
                         {
                             if (assignedDoctors[i] == currentDoctor) // find current Doctor 
@@ -276,9 +277,20 @@ namespace Healthcare_Management_System
 
                                 if (admitted[i] == true)
                                 {
-                                    Console.WriteLine("Patient name: " + patientNames[i]);
+                                    assignedDoctors[i] = newDoctor;
+                                    Console.WriteLine("Patient name: " + patientNames[i] + " has been transferred to " + newDoctor);
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("No admitted patient found under this doctor");
                                 }
                             }
+                        }
+
+                        if (doctorFound == false)
+                        {
+                            Console.WriteLine("Doctor not found!.");
                         }
 
                         break;
@@ -301,9 +313,72 @@ namespace Healthcare_Management_System
                         break;
 
                 case 8:
+                        //Search Patients by Department
+                        Console.WriteLine("Enter department name: ");
+                        string dept = Console.ReadLine();
+
+                        bool patFound = false;
+                        for (int i = 0; i <= lastPatientIndex; i++)
+                        {
+                            if (dept == departments[i])
+                            {
+                                patFound = true;
+
+                                string AdmissionStatus = admitted[i] ? "Admitted" : "Not Admitted";
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Status: " + AdmissionStatus);
+                            }
+                        }
+                        if (!patFound)
+                        {
+                            Console.WriteLine("No patients found in this department");
+                        }
+
                         break;
 
                 case 9:
+                        //Billing Report
+                        Console.WriteLine("===== Sub Menu =====");
+                        Console.WriteLine("1. System billing amount.");
+                        Console.WriteLine("2. Individual patient billing.");
+                        Console.WriteLine("Enter your choice: ");
+                        
+                        int choice = int.Parse (Console.ReadLine());
+
+                        if (choice == 1)
+                        {
+                            double TotalAmount = 0;
+                            for (int i = 0; i <= lastPatientIndex; i++)
+                            {
+                                TotalAmount += billingAmount[i];
+                            }
+
+                            Console.WriteLine("Total amount = " + TotalAmount + " OMR");
+                        }
+
+                        else if (choice == 2)
+                        {
+                            Console.WriteLine("Enter patient ID or patient name: ");
+                            string inputPatient = Console.ReadLine();
+
+                            bool found = false;
+                            for (int i = 0; i <= lastPatientIndex; i++)
+                            {
+                                if (inputPatient == patientIDs[i] || inputPatient == patientNames[i])
+                                {
+                                    found = true;
+                                    Console.WriteLine("billing amount = " + billingAmount[i]);
+                                }
+
+                            }
+
+                            Console.WriteLine("No billing records found for this patient.");
+
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Invalid choice");
+                        }
                         break;
 
                 case 10:
