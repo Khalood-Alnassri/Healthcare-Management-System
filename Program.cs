@@ -109,44 +109,49 @@ namespace Healthcare_Management_System
                         break;
                     case 2:
                         //Admit Patient
-                        Console.WriteLine("Enter patient ID or patient name: ");
-                        string Input = Console.ReadLine();
+                            Console.WriteLine("Enter patient ID or patient name: ");
+                            string Input = Console.ReadLine();
 
-                        bool Found = false;
-                        for (int i = 0; i <= lastPatientIndex; i++)
-                        {
-                            if (Input == patientIDs[i] || Input == patientNames[i])
+                            bool Found = false;
+                            for (int i = 0; i <= lastPatientIndex; i++)
                             {
-                                Found = true; // patient found
-
-                                if (admitted[i] == true) // patient already admit
+                                if (Input == patientIDs[i] || Input == patientNames[i])
                                 {
-                                    Console.WriteLine("Patient is already admitted under " + assignedDoctors[i]);
+                                    Found = true; // patient found
+
+                                    if (admitted[i] == true) // patient already admit
+                                    {
+                                        Console.WriteLine("Patient is already admitted under " + assignedDoctors[i]);
+                                        break;
+                                    }
+
+                                    //new admit patient
+
+                                    Console.WriteLine("Enter doctor name: ");
+                                    string doc = Console.ReadLine();
+
+                                    if (string.IsNullOrWhiteSpace(doc)) // Empty value is not allowed
+                                    {
+                                        Console.WriteLine("Doctor name cannot be empty.");
+                                        break;
+                                    }
+
+                                    assignedDoctors[i] = doc;
+                                    visitCount[i]++;
+                                    admitted[i] = true;
+                                    Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
+                                    Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
                                     break;
+
                                 }
-
-                                //new admit patient
-
-                                Console.WriteLine("Enter doctor name: ");
-                                string doc = Console.ReadLine();
-
-                                assignedDoctors[i] = doc;
-                                visitCount[i]++;
-                                admitted[i] = true;
-                                Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
-                                Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
-
-
 
                             }
 
-                        }
-
-                        if (Found == false)
-                        {
-                            Console.WriteLine("patient not found");
-                        }
-
+                            if (Found == false)
+                            {
+                                Console.WriteLine("patient not found");
+                            }
+                        
                         break;
 
                     case 3:
@@ -167,12 +172,12 @@ namespace Healthcare_Management_System
                                     break;
                                 }
 
-                                double visitCharge = 0; // free for this Discharge
+                                double visitCharge = 0; // fee for this Discharge
 
                                 Console.WriteLine("Was there a consultation fee? (yes/no)");
-                                string free = Console.ReadLine();
+                                string fee = Console.ReadLine();
 
-                                if (free == "yes")
+                                if (fee == "yes")
                                 {
                                     Console.WriteLine("Enter consultation fee amount: ");
                                     double amount = double.Parse(Console.ReadLine());
@@ -334,8 +339,7 @@ namespace Healthcare_Management_System
                             if (dept.ToLower() == departments[i].ToLower())
                             {
                                 patFound = true;
-                                Console.WriteLine("Patient in this department: ");
-                                Console.WriteLine("==================================");
+                              
                                 string AdmissionStatus = admitted[i] ? "Admitted" : "Not Admitted";
                                 Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Status: " + AdmissionStatus);
                             }
