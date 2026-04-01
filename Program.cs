@@ -156,8 +156,18 @@ namespace Healthcare_Management_System
                                 assignedDoctors[i] = doc;
                                 visitCount[i]++;
                                 admitted[i] = true;
-                                Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
-                                Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
+
+                                if (visitCount[i] > 1)
+                                {
+                                    Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
+                                    Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("This is the frist visit.");
+                                }
+                                
                                 break;
 
                             }
