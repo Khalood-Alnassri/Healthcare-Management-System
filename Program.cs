@@ -63,6 +63,9 @@ namespace Healthcare_Management_System
             visitCount[lastPatientIndex] = 1;
             billingAmount[lastPatientIndex] = 0;
 
+            lastPatientIndex++;
+
+
             bool exit = false;
             while (exit == false)
             {
@@ -100,8 +103,6 @@ namespace Healthcare_Management_System
                     case 1:
                         //Register New Patient
 
-                        lastPatientIndex++;
-
                         Console.WriteLine("Enter patient name: ");
                         patientNames[lastPatientIndex] = Console.ReadLine();
 
@@ -111,7 +112,7 @@ namespace Healthcare_Management_System
                         Console.WriteLine("Enter the department: ");
                         departments[lastPatientIndex] = Console.ReadLine();
 
-                        patientIDs[lastPatientIndex] = "P00" + lastPatientIndex;
+                        patientIDs[lastPatientIndex] = "P" + (lastPatientIndex + 1).ToString("D3");
 
                         admitted[lastPatientIndex] = false;
                         assignedDoctors[lastPatientIndex] = "";
@@ -119,6 +120,9 @@ namespace Healthcare_Management_System
                         billingAmount[lastPatientIndex] = 0;
 
                         Console.WriteLine("patient added Successfully, with patient ID: " + patientIDs[lastPatientIndex]);
+
+                        lastPatientIndex++;
+
                         break;
                     case 2:
                         //Admit Patient
