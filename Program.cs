@@ -317,12 +317,15 @@ namespace Healthcare_Management_System
                         //List All Admitted Patients
                         Console.WriteLine("Admitted Patients: ");
 
+                        int Count = 0;
                         bool HasAdmitted = false;
                         for (int i = 0; i <= lastPatientIndex; i++)
                         {
                             if (admitted[i] == true)
-                            {
+                            {   
                                 HasAdmitted = true;
+                                Count++;
+                                Console.WriteLine("The  total admitted count is: " + Count);
                                 Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i]);
                             }
                         }
