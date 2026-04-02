@@ -412,7 +412,7 @@ namespace Healthcare_Management_System
                         bool patFound = false;
                         for (int i = 0; i <= lastPatientIndex; i++)
                         {
-                            if (dept.ToLower() == departments[i].ToLower())
+                            if (departments[i] != null && departments[i].ToLower().Contains(dept.ToLower()))
                             {
                                 patFound = true;
 
