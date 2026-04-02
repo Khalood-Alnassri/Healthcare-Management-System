@@ -346,6 +346,7 @@ namespace Healthcare_Management_System
                         string newDoctor = Console.ReadLine();
 
                         bool doctorFound = false;
+                        bool admittedPatientFound = false; 
 
                         for (int i = 0; i <= lastPatientIndex; i++)
                         {
@@ -355,14 +356,22 @@ namespace Healthcare_Management_System
 
                                 if (admitted[i] == true)
                                 {
-                                    assignedDoctors[i] = newDoctor;
-                                    Console.WriteLine("Patient name: " + patientNames[i] + " has been transferred to " + newDoctor);
+                                    admittedPatientFound = true;
+                                    if (newDoctor != currentDoctor)
+                                    {
+                                        assignedDoctors[i] = newDoctor;
+                                        Console.WriteLine("Patient name: " + patientNames[i] + " has been transferred to " + newDoctor);
+                                       
+                                    }
+
+                                    else
+                                    {
+                                        Console.WriteLine("Doctor names must be different!");
+                                        break;
+                                    }
+
                                 }
 
-                                else
-                                {
-                                    Console.WriteLine("No admitted patient found under this doctor");
-                                }
                             }
                         }
 
@@ -371,7 +380,12 @@ namespace Healthcare_Management_System
                             Console.WriteLine("Doctor not found!.");
                         }
 
-                        break;
+                        else if (!admittedPatientFound)
+                        {
+                            Console.WriteLine("No admitted patient found under this doctor");
+                        }
+
+                            break;
 
                     case 7:
                         //View Most Visited Patients
