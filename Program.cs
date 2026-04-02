@@ -483,8 +483,17 @@ namespace Healthcare_Management_System
                                     if (inputPatient == patientIDs[i] || inputPatient == patientNames[i])
                                     {
                                         found = true;
+                                    if (billingAmount[i] > 0)
+                                    {
                                         Console.WriteLine("billing amount = " + billingAmount[i]);
                                         break; // stop after found patient
+                                    }
+
+                                    else
+                                    {
+                                        Console.WriteLine("'No billing records!");
+                                    }
+                                       
                                     }
 
                                 }
