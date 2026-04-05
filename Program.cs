@@ -230,8 +230,30 @@ namespace Healthcare_Management_System
                                 double visitCharge = 0; // fee for this Discharge
 
                                 Console.WriteLine("Was there a consultation fee? (yes/no)");
-                                string fee = Console.ReadLine();
 
+                                bool feeFound = false;
+                                string fee = "";
+                                while (!feeFound)
+                                {
+                                    try
+                                    {
+                                        fee = Console.ReadLine();
+                                        if (fee.ToLower() == "yes" || fee.ToLower() == "no")
+                                        {
+                                            feeFound = true; // خروج من اللوب
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Invalid choice. Please enter yes or no.");
+                                        }
+                                    }
+
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                        Console.WriteLine("Invalid input.Please enter yes or no.");
+                                    }
+                                }
                                 if (fee == "yes")
                                 {
                                     Console.WriteLine("Enter consultation fee amount: ");
@@ -259,7 +281,30 @@ namespace Healthcare_Management_System
 
 
                                 Console.WriteLine("Any medication charges? (yes/no)");
-                                string medication = Console.ReadLine();
+
+                                bool medicationeFound = false;
+                                string medication = "";
+                                while (!medicationeFound)
+                                {
+                                    try
+                                    {
+                                        medication = Console.ReadLine();
+                                        if (medication.ToLower() == "yes" || medication.ToLower() == "no")
+                                        {
+                                            medicationeFound = true; // خروج من اللوب
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Invalid choice. Please enter yes or no.");
+                                        }
+                                    }
+
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message);
+                                        Console.WriteLine("Invalid input.Please enter yes or no.");
+                                    }
+                                }
 
                                 if (medication == "yes")
                                 {
