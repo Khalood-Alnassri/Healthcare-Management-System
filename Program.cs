@@ -4,6 +4,7 @@ using System.Net.NetworkInformation;
 using System.Numerics;
 using System.Security.Cryptography;
 using System.Transactions;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Healthcare_Management_System
@@ -21,6 +22,12 @@ namespace Healthcare_Management_System
             int[] visitCount = new int[100];        // how many times admitted
             double[] billingAmount = new double[100];     // total fees owed
             int lastPatientIndex = -1;
+
+            string[] lastVisitDate = new string[100];
+            string[] lastDischargeDate = new string[100];
+            int[] daysInHospital = new int[100];
+            string[] bloodType = new string[100];
+
 
             //Data storage
 
@@ -118,7 +125,7 @@ namespace Healthcare_Management_System
                         assignedDoctors[lastPatientIndex] = "";
                         visitCount[lastPatientIndex] = 0;
                         billingAmount[lastPatientIndex] = 0;
-
+                        lastVisitDate[lastPatientIndex] = DateTime.MinValue;
                         Console.WriteLine("patient added Successfully, with patient ID: " + patientIDs[lastPatientIndex]);
 
                         lastPatientIndex++;
@@ -155,6 +162,7 @@ namespace Healthcare_Management_System
 
                                 assignedDoctors[i] = doc;
                                 visitCount[i]++;
+                                lastVisitDate[i] = DateTime.Now;
                                 admitted[i] = true;
 
                                 if (visitCount[i] > 1)
@@ -303,6 +311,17 @@ namespace Healthcare_Management_System
                                 {
                                     Console.WriteLine("Assigned doctor: " + assignedDoctors[i]);
                                 }
+
+                                string visitDateDisplay;
+                                if (lastVisitDate[i] == DateTime.MinValue)
+                                {
+                                    visitDateDisplay = "No admission recorded";
+                                }
+                                else
+                                {
+                                    visitDateDisplay = lastVisitDate[i].ToString ("yyyy-MM-dd");
+                                }
+                                Console.WriteLine("Last Visit Date: " + visitDateDisplay);
                                 break;
                             }
                         }
