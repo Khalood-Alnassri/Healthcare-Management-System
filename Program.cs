@@ -468,7 +468,7 @@ namespace Healthcare_Management_System
                                 patFound = true;
 
                                 string AdmissionStatus = admitted[i] ? "Admitted" : "Not Admitted";
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Status: " + AdmissionStatus);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Status: " + AdmissionStatus + ", Blood type: " + bloodType[i]);
                             }
                         }
 
@@ -537,6 +537,8 @@ namespace Healthcare_Management_System
                                     if (billingAmount[i] > 0)
                                     {
                                         Console.WriteLine("billing amount = " + billingAmount[i]);
+                                        Console.WriteLine("Last Visit Date: " + lastVisitDate[i]);
+                                        Console.WriteLine("'Total Days: " + daysInHospital[i]);
                                         break; // stop after found patient
                                     }
 
