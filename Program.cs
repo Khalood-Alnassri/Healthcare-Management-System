@@ -60,7 +60,7 @@ namespace Healthcare_Management_System
             departments[lastPatientIndex] = "Orthopedics";
             visitCount[lastPatientIndex] = 4;
             billingAmount[lastPatientIndex] = 0;
-            lastVisitDate[lastPatientIndex] = DateTime.Today;
+            lastVisitDate[lastPatientIndex] = DateTime.MinValue;
             lastDischargeDate[lastPatientIndex] = DateTime.Parse("2025-01-15");
             daysInHospital[lastPatientIndex] = 8;
             bloodType[lastPatientIndex] = "O-";
@@ -140,8 +140,8 @@ namespace Healthcare_Management_System
                         assignedDoctors[lastPatientIndex] = "";
                         visitCount[lastPatientIndex] = 0;
                         billingAmount[lastPatientIndex] = 0;
-                        lastDischargeDate[lastPatientIndex] = DateTime.Today;
-                        lastVisitDate[lastPatientIndex] = DateTime.Today;
+                        lastDischargeDate[lastPatientIndex] = DateTime.MinValue;
+                        lastVisitDate[lastPatientIndex] = DateTime.MinValue;
                         daysInHospital[lastPatientIndex] = 0;
                         Console.WriteLine("patient added Successfully, with patient ID: " + patientIDs[lastPatientIndex]);
 
@@ -181,7 +181,7 @@ namespace Healthcare_Management_System
                                 visitCount[i]++;
                                 Console.WriteLine("Enter the admission date (YYYY-MM-DD): ");
                                 lastVisitDate[i] = DateTime.Parse(Console.ReadLine());
-                                lastDischargeDate[i] = DateTime.Today;
+                                lastDischargeDate[i] = DateTime.MinValue;
                                 admitted[i] = true;
 
                                 if (visitCount[i] > 1)
@@ -331,14 +331,30 @@ namespace Healthcare_Management_System
                             {
                                 PatientFound = true; // patient found
 
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Blood Type: " + bloodType[i] + ", 'Total Days in Hospital: " + daysInHospital[i]);
 
                                 if (admitted[i] == true)
                                 {
                                     Console.WriteLine("Assigned doctor: " + assignedDoctors[i]);
                                 }
 
-                               
+                                if (lastVisitDate[i] != DateTime.MinValue)
+                                {
+                                    Console.WriteLine("Last visit date: " + lastVisitDate[i].ToString("yyyy-MM-dd"));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No admission recorded.");
+                                }
+
+                                if (lastDischargeDate[i] != DateTime.MinValue)
+                                {
+                                    Console.WriteLine("Last discharge date: " + lastDischargeDate[i].ToString("yyyy-MM-dd"));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Still admitted.");
+                                }
                             }
                         }
 
