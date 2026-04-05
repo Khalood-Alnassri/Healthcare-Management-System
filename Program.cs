@@ -131,13 +131,18 @@ namespace Healthcare_Management_System
                         Console.WriteLine("Enter the department: ");
                         departments[lastPatientIndex] = Console.ReadLine();
 
+                        Console.WriteLine("Enter the blood type: ");
+                        bloodType[lastPatientIndex] = Console.ReadLine();
+
                         patientIDs[lastPatientIndex] = "P" + (lastPatientIndex + 1).ToString("D3");
 
                         admitted[lastPatientIndex] = false;
                         assignedDoctors[lastPatientIndex] = "";
                         visitCount[lastPatientIndex] = 0;
                         billingAmount[lastPatientIndex] = 0;
-                        lastVisitDate[lastPatientIndex] = DateTime.MinValue;
+                        lastDischargeDate[lastPatientIndex] = "";
+                        lastVisitDate[lastPatientIndex] = DateTime.Now.ToString("yyyy-MM-dd");
+                        daysInHospital[lastPatientIndex] = 0;
                         Console.WriteLine("patient added Successfully, with patient ID: " + patientIDs[lastPatientIndex]);
 
                         lastPatientIndex++;
