@@ -174,18 +174,21 @@ namespace Healthcare_Management_System
                                 if (string.IsNullOrWhiteSpace(doc)) // Empty value is not allowed
                                 {
                                     Console.WriteLine("Doctor name cannot be empty.");
-                                    break;
+                                    continue; // يرجع يكمل البحث أو يطلب مرة ثانية
                                 }
 
                                 assignedDoctors[i] = doc;
                                 visitCount[i]++;
-                                lastVisitDate[i] = DateTime.Now;
+                                Console.WriteLine("Enter the admission date (YYYY-MM-DD): ");
+                                lastVisitDate[i] = Console.ReadLine();
+                                lastDischargeDate[i] = "";
                                 admitted[i] = true;
 
                                 if (visitCount[i] > 1)
                                 {
                                     Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
                                     Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
+                                    Console.WriteLine("The admission date: " + lastVisitDate[i]);
                                 }
 
                                 else
@@ -329,17 +332,7 @@ namespace Healthcare_Management_System
                                     Console.WriteLine("Assigned doctor: " + assignedDoctors[i]);
                                 }
 
-                                string visitDateDisplay;
-                                if (lastVisitDate[i] == DateTime.MinValue)
-                                {
-                                    visitDateDisplay = "No admission recorded";
-                                }
-                                else
-                                {
-                                    visitDateDisplay = lastVisitDate[i].ToString ("yyyy-MM-dd");
-                                }
-                                Console.WriteLine("Last Visit Date: " + visitDateDisplay);
-                                break;
+                               
                             }
                         }
 
