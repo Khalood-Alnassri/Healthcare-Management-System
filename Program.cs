@@ -60,8 +60,8 @@ namespace Healthcare_Management_System
             departments[lastPatientIndex] = "Orthopedics";
             visitCount[lastPatientIndex] = 4;
             billingAmount[lastPatientIndex] = 0;
-            lastVisitDate[lastPatientIndex] = DateTime.MinValue;
-            lastDischargeDate[lastPatientIndex] = DateTime.Parse("2025-01-15");
+            lastVisitDate[lastPatientIndex] = DateTime.Parse("2025-03-02");
+            lastDischargeDate[lastPatientIndex] = DateTime.MinValue;
             daysInHospital[lastPatientIndex] = 8;
             bloodType[lastPatientIndex] = "O-";
 
@@ -377,7 +377,7 @@ namespace Healthcare_Management_System
                                 HasAdmitted = true;
                                 Count++;
                                 Console.WriteLine("The  total admitted count is: " + Count);
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
                             }
                         }
 
