@@ -412,7 +412,7 @@ namespace Healthcare_Management_System
                                     {
                                         assignedDoctors[i] = newDoctor;
                                         Console.WriteLine("Patient name: " + patientNames[i] + " has been transferred to " + newDoctor);
-                                       
+                                       Console.WriteLine("Patient last admitted on: " + lastVisitDate[i]);
                                     }
 
                                     else
