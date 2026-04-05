@@ -43,6 +43,10 @@ namespace Healthcare_Management_System
             departments [lastPatientIndex] = "General";
             visitCount [lastPatientIndex] = 2;
             billingAmount [lastPatientIndex] = 0;
+            lastVisitDate[lastPatientIndex] = "2025-01-10";
+            lastDischargeDate[lastPatientIndex] = "2025-01-15";
+            daysInHospital[lastPatientIndex] = 12;
+            bloodType[lastPatientIndex] = "A+";
 
             //Patient 2
 
@@ -56,6 +60,10 @@ namespace Healthcare_Management_System
             departments[lastPatientIndex] = "Orthopedics";
             visitCount[lastPatientIndex] = 4;
             billingAmount[lastPatientIndex] = 0;
+            lastVisitDate[lastPatientIndex] = "";
+            lastDischargeDate[lastPatientIndex] = "2025-01-15";
+            daysInHospital[lastPatientIndex] = 8;
+            bloodType[lastPatientIndex] = "O-";
 
             //Patient 3
 
@@ -69,6 +77,10 @@ namespace Healthcare_Management_System
             departments[lastPatientIndex] = "Cardiology";
             visitCount[lastPatientIndex] = 1;
             billingAmount[lastPatientIndex] = 0;
+            lastVisitDate[lastPatientIndex] = "2024-12-20";
+            lastDischargeDate[lastPatientIndex] = "2024-12-28";
+            daysInHospital[lastPatientIndex] = 5;
+            bloodType[lastPatientIndex] = "B+";
 
             lastPatientIndex++;
 
