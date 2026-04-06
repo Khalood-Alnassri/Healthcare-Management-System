@@ -307,7 +307,8 @@ namespace Healthcare_Management_System
                                 if (billingAmount[i] > 0)
                                 {
 
-                                    Console.WriteLine("Total charges added this visit: " + Math.Round (billingAmount[i], 2) + " OMR");
+                                    Console.WriteLine("Total charges added this visit: " + Math.Round (visitCharge, 2) + " OMR");
+                                    Console.WriteLine("Total billing amount for this patient: " + Math.Round (billingAmount[i], 2) + " OMR");
                                 }
 
 
