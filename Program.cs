@@ -384,25 +384,61 @@ namespace Healthcare_Management_System
                         break;
                     case 5:
                         //List All Admitted Patients
-                        Console.WriteLine("Admitted Patients: ");
+                        Console.WriteLine("Filter by name keyword (press Enter to skip): ");
+                        string keyword = Console.ReadLine();
 
-                        int Count = 0;
-                        bool HasAdmitted = false;
-                        for (int i = 0; i <= lastPatientIndex; i++)
+                        if (string.IsNullOrEmpty(keyword))
                         {
-                            if (admitted[i] == true)
-                            {   
-                                HasAdmitted = true;
-                                Count++;
-                                Console.WriteLine("The  total admitted count is: " + Count);
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
+                            Console.WriteLine("Admitted Patients: ");
+
+
+                            int Count = 0;
+
+                            bool HasAdmitted = false;
+
+                            for (int i = 0; i <= lastPatientIndex; i++)
+
+                            {
+                                if (admitted[i] == true)
+                                {
+                                    HasAdmitted = true;
+                                    Count++;
+                                    Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
+                                }
+                            }
+
+                            Console.WriteLine("The  total admitted count is: " + Count);
+
+                            if (HasAdmitted == false)
+                            {
+                                Console.WriteLine("No patient admitted.");
+                            }
+
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Admitted Patients with keyword '" + keyword.ToLower() + "': ");
+                            int Count = 0;
+                            bool HasAdmitted = false;
+                            for (int i = 0; i <= lastPatientIndex; i++)
+                            {
+                                if (admitted[i] == true && patientNames[i].ToLower().Contains(keyword))
+                                {
+                                    HasAdmitted = true;
+                                    Count++;
+                                    Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
+                                }
+                            }
+
+                            Console.WriteLine("The  total admitted count is: " + Count);
+
+                            if (HasAdmitted == false)
+                            {
+                                Console.WriteLine("No admitted patients found with this keyword.");
                             }
                         }
 
-                        if (HasAdmitted == false)
-                        {
-                            Console.WriteLine("No patient admitted.");
-                        }
 
                         break;
 
