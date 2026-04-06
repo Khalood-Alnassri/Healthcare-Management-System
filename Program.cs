@@ -349,7 +349,7 @@ namespace Healthcare_Management_System
                             {
                                 PatientFound = true; // patient found
 
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Blood Type: " + bloodType[i] + ", 'Total Days in Hospital: " + daysInHospital[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i].ToUpper() + ", Diagnosis: " + diagnoses[i] + " ( " + diagnoses[i].Length + " characters)" + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + Convert.ToString (Math.Round (billingAmount[i], 2)) + ", Blood Type: " + bloodType[i] + ", 'Total Days in Hospital: " + daysInHospital[i]);
 
                                 if (admitted[i] == true)
                                 {
