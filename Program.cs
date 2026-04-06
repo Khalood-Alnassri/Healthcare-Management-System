@@ -232,113 +232,82 @@ namespace Healthcare_Management_System
                                 double visitCharge = 0; // fee for this Discharge
 
                                 Console.WriteLine("Was there a consultation fee? (yes/no)");
+                                string fee = Console.ReadLine();
 
-                                bool feeFound = false;
-                                string fee = "";
-                                while (!feeFound)
+                                if (fee == "yes")
                                 {
-                                    try
-                                    {
-                                        fee = Console.ReadLine();
-                                        if (fee.ToLower() == "yes" || fee.ToLower() == "no")
-                                        {
-                                            feeFound = true; // خروج من اللوب
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("Invalid choice. Please enter yes or no.");
-                                        }
-                                    }
-
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine(ex.Message);
-                                        Console.WriteLine("Invalid input.Please enter yes or no.");
-                                    }
-                                }
-
-                                if (fee.ToLower() == "yes")
-                                {
-                                    Console.WriteLine("Enter consultation fee amount: ");
                                     double amount = 0;
-                                    try
-                                    {
-                                        amount = double.Parse(Console.ReadLine());
+                                    bool amountValid = false;
 
-                                        if (amount > 0)
+                                    while (!amountValid)
+                                    {
+                                        Console.WriteLine("Enter consultation fee amount: ");
+                                        string feeAmount = Console.ReadLine();
+
+
+                                        if (double.TryParse(feeAmount, out amount))
                                         {
-                                            billingAmount[i] += amount;
-                                            visitCharge += amount;
+
+                                            if (amount > 0)
+                                            {
+                                                billingAmount[i] += amount;
+                                                visitCharge += amount;
+                                                amountValid = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("fee amount must be posititve");
+                                            }
                                         }
+
                                         else
                                         {
-                                            Console.WriteLine("fee amount must be posititve");
+                                            Console.WriteLine("Invalid amount entered. No charge added.");
                                         }
                                     }
 
-                                    catch (Exception e)
-                                    {
-                                        Console.WriteLine("Invalid amount. Please enter a valid number.");
-                                    }
+                                 
                                 }
 
 
                                 Console.WriteLine("Any medication charges? (yes/no)");
-
-                                bool medicationeFound = false;
-                                string medication = "";
-                                while (!medicationeFound)
-                                {
-                                    try
-                                    {
-                                        medication = Console.ReadLine();
-                                        if (medication.ToLower() == "yes" || medication.ToLower() == "no")
-                                        {
-                                            medicationeFound = true; // خروج من اللوب
-                                        }
-                                        else
-                                        {
-                                            Console.WriteLine("Invalid choice. Please enter yes or no.");
-                                        }
-                                    }
-
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine(ex.Message);
-                                        Console.WriteLine("Invalid input.Please enter yes or no.");
-                                    }
-                                }
-
+                                string medication = Console.ReadLine();
+                           
                                 if (medication.ToLower() == "yes")
                                 {
-                                    Console.WriteLine("Enter medication charges: ");
+                                        
                                     double price = 0;
-                                    try
-                                    {
-                                        price = double.Parse(Console.ReadLine());
+                                    bool priceValid = false;
 
-                                        if (price > 0)
+                                    while (!priceValid)
+                                    {
+                                        Console.WriteLine("Enter medication charges: ");
+                                        string medCharge = Console.ReadLine();
+
+                                        if (double.TryParse(medCharge, out price))
                                         {
-                                            billingAmount[i] += price;
-                                            visitCharge += price;
+                                            if (price > 0)
+                                            {
+                                                billingAmount[i] += price;
+                                                visitCharge += price;
+                                                priceValid = true;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("medication price must be posititve");
+                                            }
                                         }
                                         else
                                         {
-                                            Console.WriteLine("fee price must be posititve");
+                                            Console.WriteLine("Invalid amount entered. No charge added.");
                                         }
                                     }
-
-                                    catch (Exception e)
-                                    {
-                                        Console.WriteLine("Invalid price. Please enter a valid number.");
-                                    }
-
                                 }
 
                                 if (billingAmount[i] > 0)
                                 {
 
-                                    Console.WriteLine("Total charges added this visit: " + billingAmount[i] + " OMR");
+                                    Console.WriteLine("Total charges added this visit: " + Math.Round (billingAmount[i], 2) + " OMR");
                                 }
 
 
