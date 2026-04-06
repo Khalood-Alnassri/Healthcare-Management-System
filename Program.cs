@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Metrics;
+﻿using System;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Numerics;
@@ -123,16 +124,16 @@ namespace Healthcare_Management_System
                         //Register New Patient
 
                         Console.WriteLine("Enter patient name: ");
-                        patientNames[lastPatientIndex] = Console.ReadLine();
+                        patientNames[lastPatientIndex] = Console.ReadLine().Trim();
 
                         Console.WriteLine("Enter the diagnose: ");
-                        diagnoses[lastPatientIndex] = Console.ReadLine();
-
+                        diagnoses[lastPatientIndex] = Console.ReadLine().Trim();
+                        
                         Console.WriteLine("Enter the department: ");
-                        departments[lastPatientIndex] = Console.ReadLine();
+                        departments[lastPatientIndex] = Console.ReadLine().Trim();
 
                         Console.WriteLine("Enter the blood type: ");
-                        bloodType[lastPatientIndex] = Console.ReadLine();
+                        bloodType[lastPatientIndex] = Console.ReadLine().ToUpper();
 
                         patientIDs[lastPatientIndex] = "P" + (lastPatientIndex + 1).ToString("D3");
 
