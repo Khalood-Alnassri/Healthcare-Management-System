@@ -523,7 +523,7 @@ namespace Healthcare_Management_System
                     case 8:
                         //Search Patients by Department
                         Console.WriteLine("Enter department name: ");
-                        string dept = Console.ReadLine();
+                        string dept = Console.ReadLine().ToUpper();
 
                         bool patFound = false;
                         for (int i = 0; i <= lastPatientIndex; i++)
@@ -532,8 +532,19 @@ namespace Healthcare_Management_System
                             {
                                 patFound = true;
 
+                                string diagnosisDisplay;
+
+                                if (diagnoses[i].Length > 15)
+                                {
+                                    diagnosisDisplay = diagnoses[i].Substring(0, 15) + "...";
+                                }
+                                else
+                                {
+                                    diagnosisDisplay = diagnoses[i];
+                                }
+
                                 string AdmissionStatus = admitted[i] ? "Admitted" : "Not Admitted";
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Status: " + AdmissionStatus + ", Blood type: " + bloodType[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnosisDisplay  + ", Status: " + AdmissionStatus + ", Blood type: " + bloodType[i]);
                             }
                         }
 
