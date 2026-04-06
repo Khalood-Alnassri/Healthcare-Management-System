@@ -254,7 +254,8 @@ namespace Healthcare_Management_System
                                         Console.WriteLine("Invalid input.Please enter yes or no.");
                                     }
                                 }
-                                if (fee == "yes")
+
+                                if (fee.ToLower() == "yes")
                                 {
                                     Console.WriteLine("Enter consultation fee amount: ");
                                     double amount = 0;
@@ -306,7 +307,7 @@ namespace Healthcare_Management_System
                                     }
                                 }
 
-                                if (medication == "yes")
+                                if (medication.ToLower() == "yes")
                                 {
                                     Console.WriteLine("Enter medication charges: ");
                                     double price = 0;
