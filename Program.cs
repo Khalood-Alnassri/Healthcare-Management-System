@@ -180,16 +180,17 @@ namespace Healthcare_Management_System
 
                                 assignedDoctors[i] = doc;
                                 visitCount[i]++;
-                                Console.WriteLine("Enter the admission date (YYYY-MM-DD): ");
-                                lastVisitDate[i] = DateTime.Parse(Console.ReadLine());
+                                lastVisitDate[i] = DateTime.Now;
+                                string admission = lastVisitDate[i].ToString("yyyy-MM-dd HH:mm");
                                 lastDischargeDate[i] = DateTime.MinValue;
                                 admitted[i] = true;
 
+                                Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
+                                Console.WriteLine("The admission date: " + lastVisitDate[i]);
+
                                 if (visitCount[i] > 1)
                                 {
-                                    Console.WriteLine("Patient admitted successfully and assigned to " + assignedDoctors[i]);
                                     Console.WriteLine("This patient has been admitted " + visitCount[i] + " times.");
-                                    Console.WriteLine("The admission date: " + lastVisitDate[i]);
                                 }
 
                                 else
