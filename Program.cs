@@ -453,10 +453,13 @@ namespace Healthcare_Management_System
                     case 6:
                         //Transfer Patient to Another Doctor
                         Console.WriteLine("Enter current doctor name: ");
-                        string currentDoctor = Console.ReadLine();
+                        string currentDoctor = Console.ReadLine().Trim();
 
                         Console.WriteLine("Enter new doctor name: ");
-                        string newDoctor = Console.ReadLine();
+                        string newDoctor = Console.ReadLine().Trim();
+
+                        currentDoctor = currentDoctor.Replace("Dr ", "Dr. ");
+                        newDoctor = newDoctor.Replace("Dr ", "Dr. ");
 
                         bool doctorFound = false;
                         bool admittedPatientFound = false; 
