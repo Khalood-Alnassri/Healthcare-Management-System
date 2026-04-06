@@ -393,7 +393,7 @@ namespace Healthcare_Management_System
 
 
                             int Count = 0;
-
+                            double maxBilling = 0;
                             bool HasAdmitted = false;
 
                             for (int i = 0; i <= lastPatientIndex; i++)
@@ -403,11 +403,15 @@ namespace Healthcare_Management_System
                                 {
                                     HasAdmitted = true;
                                     Count++;
+
+                                    maxBilling = Math.Max(maxBilling, billingAmount[i]); // to track the running maximum
+
                                     Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
                                 }
                             }
 
                             Console.WriteLine("The  total admitted count is: " + Count);
+                            Console.WriteLine("The highest billing amount among admitted patients is: " + Math.Round(maxBilling, 2) + " OMR");
 
                             if (HasAdmitted == false)
                             {
@@ -419,7 +423,9 @@ namespace Healthcare_Management_System
                         else
                         {
                             Console.WriteLine("Admitted Patients with keyword '" + keyword.ToLower() + "': ");
+
                             int Count = 0;
+                            double maxBilling = 0;
                             bool HasAdmitted = false;
                             for (int i = 0; i <= lastPatientIndex; i++)
                             {
@@ -427,11 +433,13 @@ namespace Healthcare_Management_System
                                 {
                                     HasAdmitted = true;
                                     Count++;
+                                    maxBilling = Math.Max(maxBilling, billingAmount[i]); // to track the running maximum
                                     Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
                                 }
                             }
 
                             Console.WriteLine("The  total admitted count is: " + Count);
+                            Console.WriteLine("The highest billing amount among admitted patients is: " + Math.Round(maxBilling, 2) + " OMR");
 
                             if (HasAdmitted == false)
                             {
