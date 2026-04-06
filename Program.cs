@@ -586,35 +586,58 @@ namespace Healthcare_Management_System
                                 Console.WriteLine("Invalid input.Please enter 1 or 2.");
                             }
                         }
-                            // بعد ما يدخل خيار صحيح فقط
+                        // بعد ما يدخل خيار صحيح فقط
 
-                            if (choice == 1)
+                        if (choice == 1)
+                        {
+                            double TotalAmount = 0;
+                            double maxIndividualBilling = 0;
+                            double minIndividualBilling = double.MaxValue;
+                            for (int i = 0; i <= lastPatientIndex; i++)
                             {
-                                double TotalAmount = 0;
-                                for (int i = 0; i <= lastPatientIndex; i++)
-                                {
-                                    TotalAmount += billingAmount[i];
-                                }
+                                TotalAmount += billingAmount[i];
 
-                                Console.WriteLine("Total amount = " + TotalAmount + " OMR");
+                                if (billingAmount[i] > 0) 
+                                {
+                                    maxIndividualBilling = Math.Max(maxIndividualBilling, billingAmount[i]);
+                                    minIndividualBilling = Math.Min(minIndividualBilling, billingAmount[i]);
+                                }
                             }
 
-                            else if (choice == 2)
-                            {
-                                Console.WriteLine("Enter patient ID or patient name: ");
-                                string inputPatient = Console.ReadLine();
+                            Console.WriteLine("Total amount = " + Math.Round(TotalAmount, 2) + " OMR");
 
-                                bool found = false;
-                                for (int i = 0; i <= lastPatientIndex; i++)
+                            if (minIndividualBilling != double.MaxValue)
+                            {
+                                Console.WriteLine("Highest individual billing: " + Math.Round(maxIndividualBilling, 2) + "OMR");
+                                Console.WriteLine("Lowest individual billing: " + Math.Round(minIndividualBilling, 2) + "OMR");
+                            }
+
+
+                        }
+
+                        else if (choice == 2)
+                        {
+                            Console.WriteLine("Enter patient ID or patient name: ");
+                            string inputPatient = Console.ReadLine();
+
+                            bool found = false;
+                            Random rand = new Random();
+                            for (int i = 0; i <= lastPatientIndex; i++)
+                            {
+                                if (inputPatient == patientIDs[i] || inputPatient == patientNames[i])
                                 {
-                                    if (inputPatient == patientIDs[i] || inputPatient == patientNames[i])
-                                    {
-                                        found = true;
+                                    found = true;
                                     if (billingAmount[i] > 0)
                                     {
-                                        Console.WriteLine("billing amount = " + billingAmount[i]);
+                                        Console.WriteLine("billing amount = " + Math.Round(billingAmount[i], 2));
                                         Console.WriteLine("Last Visit Date: " + lastVisitDate[i]);
                                         Console.WriteLine("'Total Days: " + daysInHospital[i]);
+
+                                        //add discount 
+                                        int discountPercent = rand.Next(5, 21);
+                                        double discountValue = (discountPercent / 100.0) * billingAmount[i];
+                                        double finalAmount = billingAmount[i] - discountValue;
+                                        Console.WriteLine("Discount applied: " + discountPercent + "% —  Amount after discount: " + Math.Round(discountValue, 2) + " OMR");
                                         break; // stop after found patient
                                     }
 
@@ -622,16 +645,15 @@ namespace Healthcare_Management_System
                                     {
                                         Console.WriteLine("'No billing records!");
                                     }
-                                       
-                                    }
-
                                 }
 
-                                if (!choiceFound)
-                                {
-                                    Console.WriteLine("No billing records found for this patient.");
-                                }
                             }
+
+                            if (!choiceFound)
+                            {
+                                Console.WriteLine("No billing records found for this patient.");
+                            }
+                        }
                         
                 
                         break;
