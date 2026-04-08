@@ -318,11 +318,11 @@ namespace Healthcare_Management_System
                                 }
 
                                 admitted[i] = false;
-                                Console.WriteLine("Enter the discharge date (YYYY-MM-DD): ");
-                                lastDischargeDate[i] = DateTime.Parse(Console.ReadLine());
-                                Console.WriteLine("Enter the number of days the patient spent in hospital during this visit: ");
-                                int days = int.Parse (Console.ReadLine());
-                                daysInHospital[i] += days;
+
+
+                                lastDischargeDate[i] = DateTime.Now;
+                                TimeSpan days = DateTime.Now - lastVisitDate[i];
+                                daysInHospital[i] += Convert.ToInt32(days);
 
                                 assignedDoctors[i] = "";
                                 Console.WriteLine("Patient discharged successfully, with total days in hospital: " + daysInHospital[i]);
@@ -349,7 +349,10 @@ namespace Healthcare_Management_System
                             {
                                 PatientFound = true; // patient found
 
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i].ToUpper() + ", Diagnosis: " + diagnoses[i] + " ( " + diagnoses[i].Length + " characters)" + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + Convert.ToString (Math.Round (billingAmount[i], 2)) + ", Blood Type: " + bloodType[i] + ", 'Total Days in Hospital: " + daysInHospital[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i].ToUpper() + ", Diagnosis: " + diagnoses[i] + 
+                                                " ( " + diagnoses[i].Length + " characters)" + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + 
+                                                ", Visit count: " + visitCount[i] + ", total billing amount: " + Convert.ToString (Math.Round (billingAmount[i], 2)) + 
+                                                ", Blood Type: " + bloodType[i] + ", 'Total Days in Hospital: " + daysInHospital[i]);
 
                                 if (admitted[i] == true)
                                 {
