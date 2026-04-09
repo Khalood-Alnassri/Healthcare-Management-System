@@ -349,10 +349,10 @@ namespace Healthcare_Management_System
                             {
                                 PatientFound = true; // patient found
 
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i].ToUpper() + ", Diagnosis: " + diagnoses[i] + 
-                                                " ( " + diagnoses[i].Length + " characters)" + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + 
-                                                ", Visit count: " + visitCount[i] + ", total billing amount: " + Convert.ToString (Math.Round (billingAmount[i], 2)) + 
-                                                ", Blood Type: " + bloodType[i] + ", 'Total Days in Hospital: " + daysInHospital[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ",\nPatient ID: " + patientIDs[i].ToUpper() + ",\nDiagnosis: " + diagnoses[i] + 
+                                                " ( " + diagnoses[i].Length + " characters)" + ",\nDepartment: " + departments[i] + ",\nAdmission status: " + admitted[i] + 
+                                                ",\nVisit count: " + visitCount[i] + ",\ntotal billing amount: " + Convert.ToString (Math.Round (billingAmount[i], 2)) + 
+                                                ",\nBlood Type: " + bloodType[i] + ",\nTotal Days in Hospital: " + daysInHospital[i]);
 
                                 if (admitted[i] == true)
                                 {
@@ -409,7 +409,7 @@ namespace Healthcare_Management_System
 
                                     maxBilling = Math.Max(maxBilling, billingAmount[i]); // to track the running maximum
 
-                                    Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
+                                    Console.WriteLine("Patient name: " + patientNames[i] + ",\nPatient ID: " + patientIDs[i] + ",\nDiagnosis: " + diagnoses[i] + ",\nDepartment: " + departments[i] + ",\nAdmission status: " + admitted[i] + ",\nVisit count: " + visitCount[i] + ",\ntotal billing amount: " + billingAmount[i] + ",\nAssigned doctor: " + assignedDoctors[i] + ",\nAdmitted since: " + lastVisitDate[i]);
                                 }
                             }
 
@@ -437,7 +437,7 @@ namespace Healthcare_Management_System
                                     HasAdmitted = true;
                                     Count++;
                                     maxBilling = Math.Max(maxBilling, billingAmount[i]); // to track the running maximum
-                                    Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Admission status: " + admitted[i] + ", Visit count: " + visitCount[i] + ", total billing amount: " + billingAmount[i] + ", Assigned doctor: " + assignedDoctors[i] + ", Admitted since: " + lastVisitDate[i]);
+                                    Console.WriteLine("Patient name: " + patientNames[i] + ",\nPatient ID: " + patientIDs[i] + ",\nDiagnosis: " + diagnoses[i] + ",\nDepartment: " + departments[i] + ",\nAdmission status: " + admitted[i] + ",\nVisit count: " + visitCount[i] + ",\ntotal billing amount: " + billingAmount[i] + ",\nAssigned doctor: " + assignedDoctors[i] + ",\nAdmitted since: " + lastVisitDate[i]);
                                 }
                             }
 
@@ -516,7 +516,7 @@ namespace Healthcare_Management_System
                             {
                                 if (visitCount[i] == visit) //ترتيب المرضى على حسب عدد مرات الزيارة
                                 {
-                                    Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnoses[i] + ", Department: " + departments[i] + ", Visit count: " + visitCount[i]);
+                                    Console.WriteLine("Patient name: " + patientNames[i] + ",\nPatient ID: " + patientIDs[i] + ",\nDiagnosis: " + diagnoses[i] + ",\nDepartment: " + departments[i] + ",\nVisit count: " + visitCount[i]);
                                 }
                             }
                         }
@@ -547,7 +547,7 @@ namespace Healthcare_Management_System
                                 }
 
                                 string AdmissionStatus = admitted[i] ? "Admitted" : "Not Admitted";
-                                Console.WriteLine("Patient name: " + patientNames[i] + ", Patient ID: " + patientIDs[i] + ", Diagnosis: " + diagnosisDisplay  + ", Status: " + AdmissionStatus + ", Blood type: " + bloodType[i]);
+                                Console.WriteLine("Patient name: " + patientNames[i] + ",\nPatient ID: " + patientIDs[i] + ",\nDiagnosis: " + diagnosisDisplay  + ",\nStatus: " + AdmissionStatus + ",\nBlood type: " + bloodType[i]);
                             }
                         }
 
